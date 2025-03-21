@@ -1,0 +1,11 @@
+[package]
+name = "shard-core"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+clap.workspace = true
+starknet.workspace = true
+tokio.workspace = true
+url.workspace = true
+starknet-crypto.workspace = true

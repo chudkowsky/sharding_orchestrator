@@ -9,8 +9,12 @@ use starknet::{
 use starknet_crypto::Felt;
 use tokio::time::sleep;
 
-
-pub async fn look_for_event(contract_address: Felt, start_block: u64, rpc_url: Url,event_hash: Felt) {
+pub async fn look_for_event(
+    contract_address: Felt,
+    start_block: u64,
+    rpc_url: Url,
+    event_hash: Felt,
+) {
     let provider: Arc<JsonRpcClient<HttpTransport>> =
         Arc::new(JsonRpcClient::new(HttpTransport::new(rpc_url)));
     let mut current_block = start_block;
@@ -59,6 +63,8 @@ pub async fn get_events_for_blocks(
 #[tokio::test]
 async fn test_look_for_event() {
     use starknet::core::utils::starknet_keccak;
+
+    pub const RPC_URL: &str = "https://starknet-sepolia.public.blastapi.io";
     let address = Felt::from_hex_unchecked(
         "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
     );
@@ -66,5 +72,5 @@ async fn test_look_for_event() {
     println!("Event hash: {:?}", event_hash);
     let start_block = 612520;
     let rpc_url = Url::parse(RPC_URL).unwrap();
-    look_for_event(address, start_block, rpc_url,event_hash).await;
+    look_for_event(address, start_block, rpc_url, event_hash).await;
 }

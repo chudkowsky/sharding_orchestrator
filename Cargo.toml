@@ -1,12 +1,17 @@
-[package]
-name = "sharding_orchestrator"
+[workspace]
+resolver = "2"
+members = [
+    "shard/core",
+    "bin/shard",
+]
+[workspace.package]
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
-
-clap = {version = "4.5.31",features = ["derive"]}
+[workspace.dependencies]
+clap = {version = "4.5.31",features = ["derive","env"]}
 starknet = "0.13.0"
 starknet-crypto = "0.7.4"
-starknet-types-core = { version = "0.1.7", default-features = false }
 tokio = { version = "1.0.2", features = ["full"] }
+shard-core = { path = "shard/core" }
+url = { version = "2.5.4", default-features = false }
